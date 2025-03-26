@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Advanced Financial Transaction DApp</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="home-background"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <button id="navTransaction" class="active">Transaction Mode</button>
+    <button id="navCurrency">Live Currency Exchange</button>
+  </nav>
+
+  <!-- Transaction Container -->
+  <div class="container" id="transactionContainer">
+    <div class="transaction-section">
+      <h1>Transaction Mode</h1>
+      <div class="wallet-section">
+        <button id="connectButton">Connect Wallet</button>
+        <div id="walletAddress"></div>
+      </div>
+      <div class="action-box">
+        <h3>Send Transaction</h3>
+        <input type="text" id="recipient" placeholder="Recipient Address">
+        <input type="number" id="sendAmount" placeholder="Amount in Wei">
+        <button id="sendTxButton">Send Transaction</button>
+        <div id="txStatus"></div>
+      </div>
+      <div class="action-box">
+        <h3>Deposit Funds</h3>
+        <input type="number" id="depositAmount" placeholder="Deposit Amount in Wei">
+        <button id="depositButton">Deposit</button>
+        <div id="depositStatus"></div>
+      </div>
+      <div class="action-box">
+        <h3>Withdraw Funds (Owner Only)</h3>
+        <input type="number" id="withdrawAmount" placeholder="Withdraw Amount in Wei">
+        <button id="withdrawButton">Withdraw</button>
+        <div id="withdrawStatus"></div>
+      </div>
+      <div class="action-box">
+        <h3>Get Contract Balance</h3>
+        <button id="getBalanceButton">Get Balance</button>
+        <div id="contractBalance"></div>
+      </div>
+      <div class="events-section">
+        <h3>Contract Events</h3>
+        <ul id="eventList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Currency Container -->
+  <div class="container" id="currencyContainer" style="display:none">
+    <div class="currency-section">
+      <h1>Live Currency Exchange</h1>
+      <div class="custom-dropdown">
+        <label for="fromCurrency">From Currency:</label>
+        <select id="fromCurrency">
+          <option value="INR" selected>INR</option>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="AUD">AUD</option>
+          <option value="CAD">CAD</option>
+          <option value="SGD">SGD</option>
+          <option value="CHF">CHF</option>
+          <option value="JPY">JPY</option>
+          <option value="CNY">CNY</option>
+          <option value="HKD">HKD</option>
+          <option value="NZD">NZD</option>
+          <option value="KRW">KRW</option>
+          <option value="RUB">RUB</option>
+          <option value="BRL">BRL</option>
+        </select>
+      </div>
+      <div class="custom-dropdown">
+        <label for="toCurrency">To Currency:</label>
+        <select id="toCurrency">
+          <option value="USD" selected>USD</option>
+          <option value="INR">INR</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="AUD">AUD</option>
+          <option value="CAD">CAD</option>
+          <option value="SGD">SGD</option>
+          <option value="CHF">CHF</option>
+          <option value="JPY">JPY</option>
+          <option value="CNY">CNY</option>
+          <option value="HKD">HKD</option>
+          <option value="NZD">NZD</option>
+          <option value="KRW">KRW</option>
+          <option value="RUB">RUB</option>
+          <option value="BRL">BRL</option>
+        </select>
+      </div>
+      <div class="conversion-calculator">
+        <input type="number" id="amountInput" placeholder="Enter amount">
+        <button id="convertButton">Convert</button>
+        <div id="conversionResult"></div>
+      </div>
+      <div>
+        <button id="refreshRates">Refresh Live Rates</button>
+        <div id="liveRates"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Script -->
+  <script src="app.js"></script>
+</body>
+</html>
