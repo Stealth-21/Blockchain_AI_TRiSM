@@ -8,11 +8,16 @@
   <script src="https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.umd.min.js"></script>
 </head>
 <body>
+  <!-- Animated Background -->
   <div class="home-background"></div>
+
+  <!-- Navbar -->
   <nav class="navbar">
     <button id="navTransaction" class="active">Transaction Mode</button>
     <button id="navCurrency">Live Currency Exchange</button>
   </nav>
+
+  <!-- Transaction Mode Section -->
   <div class="container" id="transactionContainer">
     <div class="transaction-section">
       <h1>Transaction Mode</h1>
@@ -58,6 +63,8 @@
       </div>
     </div>
   </div>
+
+  <!-- Live Currency Exchange Section -->
   <div class="container" id="currencyContainer" style="display: none;">
     <div class="currency-section">
       <h1>Live Currency Exchange</h1>
@@ -121,7 +128,7 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Rates will be populated here -->
+            <!-- Table rows will be inserted dynamically -->
           </tbody>
         </table>
       </div>
