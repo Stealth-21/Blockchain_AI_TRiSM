@@ -317,62 +317,6 @@ table tr:nth-child(even) {
     font-size: 12px;
   }
 }
-/* Dark Mode Styles */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212;
-    color: #e0e0e0;
-  }
-  .navbar {
-    background: rgba(18, 18, 18, 0.85);
-  }
-  .navbar:hover {
-    background: rgba(18, 18, 18, 0.95);
-  }
-  .container {
-    background: rgba(34, 34, 34, 0.95);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-  }
-}
-.transaction-section,
-.currency-section {
-  background: linear-gradient(135deg, #1e1e1e, #2e2e2e);
-  border: 2px solid #00ffcc;
-}
-.action-box {
-  background: #1e1e1e;
-  border: 1px solid #444;
-}
-.action-box:hover {
-  background: #2e2e2e;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-}
-input[type="text"],
-input[type="number"] {
-  background: #2e2e2e;
-  color: #e0e0e0;
-  border: 1px solid #444;
-}
-input:focus {
-  border-color: #00ffcc;
-  box-shadow: 0 0 10px rgba(0,255,204,0.5);
-}
-button {
-  background-color: #00ffcc;
-  color: #121212;
-}
-button:hover {
-  background-color: #00cc99;
-}
-.custom-dropdown select {
-  background-color: #2e2e2e;
-  color: #e0e0e0;
-  border: 1px solid #444;
-}
-.custom-dropdown select:focus {
-  border-color: #00ffcc;
-  box-shadow: 0 0 10px rgba(0,255,204,0.5);
-}
 /* Footer Styles */
 .footer {
   text-align: center;
