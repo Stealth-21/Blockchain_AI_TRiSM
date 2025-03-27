@@ -4,20 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Advanced Financial Transaction DApp</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.umd.min.js"></script>
 </head>
 <body>
-  <!-- Animated Background -->
   <div class="home-background"></div>
-
-  <!-- Navigation Bar -->
   <nav class="navbar">
     <button id="navTransaction" class="active">Transaction Mode</button>
     <button id="navCurrency">Live Currency Exchange</button>
   </nav>
-
-  <!-- Transaction Container -->
   <div class="container" id="transactionContainer">
     <div class="transaction-section">
       <h1>Transaction Mode</h1>
@@ -27,20 +22,28 @@
       </div>
       <div class="action-box">
         <h3>Send Transaction</h3>
-        <input type="text" id="recipient" placeholder="Recipient Address">
-        <input type="number" id="sendAmount" placeholder="Amount in Wei">
+        <input type="text" id="recipient" placeholder="Recipient Address" />
+        <input type="number" id="sendAmount" placeholder="Amount in Wei" />
         <button id="sendTxButton">Send Transaction</button>
         <div id="txStatus"></div>
       </div>
       <div class="action-box">
+        <h3>Schedule Transaction</h3>
+        <input type="text" id="schedRecipient" placeholder="Recipient Address" />
+        <input type="number" id="schedAmount" placeholder="Amount in Wei" />
+        <input type="number" id="schedDelay" placeholder="Delay (seconds)" />
+        <button id="scheduleTxButton">Schedule Transaction</button>
+        <div id="schedStatus"></div>
+      </div>
+      <div class="action-box">
         <h3>Deposit Funds</h3>
-        <input type="number" id="depositAmount" placeholder="Deposit Amount in Wei">
+        <input type="number" id="depositAmount" placeholder="Deposit Amount in Wei" />
         <button id="depositButton">Deposit</button>
         <div id="depositStatus"></div>
       </div>
       <div class="action-box">
         <h3>Withdraw Funds (Owner Only)</h3>
-        <input type="number" id="withdrawAmount" placeholder="Withdraw Amount in Wei">
+        <input type="number" id="withdrawAmount" placeholder="Withdraw Amount in Wei" />
         <button id="withdrawButton">Withdraw</button>
         <div id="withdrawStatus"></div>
       </div>
@@ -55,16 +58,15 @@
       </div>
     </div>
   </div>
-
-  <!-- Currency Container -->
-  <div class="container" id="currencyContainer" style="display:none">
+  <div class="container" id="currencyContainer" style="display: none;">
     <div class="currency-section">
       <h1>Live Currency Exchange</h1>
       <div class="custom-dropdown">
         <label for="fromCurrency">From Currency:</label>
+        <!-- Default to USD -->
         <select id="fromCurrency">
-          <option value="INR" selected>INR</option>
-          <option value="USD">USD</option>
+          <option value="USD" selected>USD</option>
+          <option value="INR">INR</option>
           <option value="EUR">EUR</option>
           <option value="GBP">GBP</option>
           <option value="AUD">AUD</option>
@@ -83,8 +85,8 @@
       <div class="custom-dropdown">
         <label for="toCurrency">To Currency:</label>
         <select id="toCurrency">
-          <option value="USD" selected>USD</option>
-          <option value="INR">INR</option>
+          <option value="INR" selected>INR</option>
+          <option value="USD">USD</option>
           <option value="EUR">EUR</option>
           <option value="GBP">GBP</option>
           <option value="AUD">AUD</option>
@@ -101,7 +103,7 @@
         </select>
       </div>
       <div class="conversion-calculator">
-        <input type="number" id="amountInput" placeholder="Enter amount">
+        <input type="number" id="amountInput" placeholder="Enter amount" />
         <button id="convertButton">Convert</button>
         <div id="conversionResult"></div>
       </div>
@@ -109,10 +111,22 @@
         <button id="refreshRates">Refresh Live Rates</button>
         <div id="liveRates"></div>
       </div>
+      <div>
+        <h3>All Rates</h3>
+        <table id="currencyTable">
+          <thead>
+            <tr>
+              <th>Currency</th>
+              <th>Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rates will be populated here -->
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-
-  <!-- Main Script -->
   <script src="app.js"></script>
 </body>
 </html>
