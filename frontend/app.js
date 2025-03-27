@@ -21,7 +21,7 @@ window.addEventListener('load', async function() {
   });
 
   // Ensure MetaMask is installed
-  if(typeof window.ethereum === 'undefined'){
+  if (typeof window.ethereum === 'undefined') {
     alert('MetaMask is not installed.');
     return;
   }
@@ -53,11 +53,11 @@ window.addEventListener('load', async function() {
   document.getElementById('sendTxButton').addEventListener('click', async function() {
     const recipient = document.getElementById('recipient').value;
     const amount = document.getElementById('sendAmount').value;
-    if(!ethers.isAddress(recipient)){
+    if (!ethers.isAddress(recipient)) {
       alert("Invalid recipient address");
       return;
     }
-    if(parseInt(amount) <= 0){
+    if (parseInt(amount) <= 0) {
       alert("Amount must be greater than 0");
       return;
     }
@@ -77,11 +77,11 @@ window.addEventListener('load', async function() {
     const schedRecipient = document.getElementById('schedRecipient').value;
     const schedAmount = document.getElementById('schedAmount').value;
     const schedDelay = document.getElementById('schedDelay').value;
-    if(!ethers.isAddress(schedRecipient)){
+    if (!ethers.isAddress(schedRecipient)) {
       alert("Invalid recipient address");
       return;
     }
-    if(parseInt(schedAmount) <= 0 || parseInt(schedDelay) < 0){
+    if (parseInt(schedAmount) <= 0 || parseInt(schedDelay) < 0) {
       alert("Enter valid amount and delay");
       return;
     }
@@ -100,7 +100,7 @@ window.addEventListener('load', async function() {
   // Deposit Funds
   document.getElementById('depositButton').addEventListener('click', async function() {
     const depositAmount = document.getElementById('depositAmount').value;
-    if(parseInt(depositAmount) <= 0){
+    if (parseInt(depositAmount) <= 0) {
       alert("Deposit amount must be greater than 0");
       return;
     }
@@ -118,7 +118,7 @@ window.addEventListener('load', async function() {
   // Withdraw Funds
   document.getElementById('withdrawButton').addEventListener('click', async function() {
     const withdrawAmount = document.getElementById('withdrawAmount').value;
-    if(parseInt(withdrawAmount) <= 0){
+    if (parseInt(withdrawAmount) <= 0) {
       alert("Withdraw amount must be greater than 0");
       return;
     }
@@ -143,20 +143,16 @@ window.addEventListener('load', async function() {
     }
   });
 
-  // Event Listeners using ethers v6 event API
-  contract.on("TransactionExecuted", (...args) => {
-    const event = args[args.length - 1];
-    if (!event.args) return;
-    const { from, to, amount } = event.args;
+  // Event Listeners (Using explicit parameters)
+  contract.on("TransactionExecuted", (from, to, amount, event) => {
+    if (!from || !to || !amount) return;
     const li = document.createElement('li');
     li.innerText = "Tx - From: " + from + " To: " + to + " Amount: " + amount.toString() + " Wei";
     document.getElementById('eventList').appendChild(li);
   });
 
-  contract.on("Deposit", (...args) => {
-    const event = args[args.length - 1];
-    if (!event.args) return;
-    const { from, amount } = event.args;
+  contract.on("Deposit", (from, amount, event) => {
+    if (!from || !amount) return;
     const li = document.createElement('li');
     li.innerText = "Deposit - From: " + from + " Amount: " + amount.toString() + " Wei";
     document.getElementById('eventList').appendChild(li);
@@ -167,7 +163,7 @@ window.addEventListener('load', async function() {
     try {
       const response = await fetch(`https://open.er-api.com/v6/latest/${base}`);
       const data = await response.json();
-      if(data.result === "success") {
+      if (data.result === "success") {
         return data.rates;
       } else {
         throw new Error("Failed to fetch rates");
@@ -196,7 +192,7 @@ window.addEventListener('load', async function() {
   async function fetchLiveRates() {
     const fromCurrency = document.getElementById('fromCurrency').value;
     const rates = await fetchRates(fromCurrency);
-    if(rates) {
+    if (rates) {
       document.getElementById('liveRates').innerText = "Live Rates (Base: " + fromCurrency + ")";
       updateCurrencyTable(rates);
     } else {
@@ -206,7 +202,7 @@ window.addEventListener('load', async function() {
 
   // Auto-update live rates every 10 seconds if currency section is visible
   setInterval(() => {
-    if(currencyContainer.style.display !== 'none') {
+    if (currencyContainer.style.display !== 'none') {
       fetchLiveRates();
     }
   }, 10000);
@@ -215,12 +211,12 @@ window.addEventListener('load', async function() {
     const amountInput = document.getElementById('amountInput').value;
     const fromCurrency = document.getElementById('fromCurrency').value;
     const toCurrency = document.getElementById('toCurrency').value;
-    if(parseFloat(amountInput) <= 0) {
+    if (parseFloat(amountInput) <= 0) {
       alert("Enter a valid amount");
       return;
     }
     const rates = await fetchRates(fromCurrency);
-    if(rates && rates[toCurrency]) {
+    if (rates && rates[toCurrency]) {
       const converted = parseFloat(amountInput) * rates[toCurrency];
       document.getElementById('conversionResult').innerText = amountInput + " " + fromCurrency + " = " + converted.toFixed(2) + " " + toCurrency;
     } else {
